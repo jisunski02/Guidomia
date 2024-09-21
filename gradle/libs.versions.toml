@@ -1,0 +1,78 @@
+[versions]
+agp = "8.1.4"
+kotlin = "1.9.23"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.2"
+constraintlayout = "2.1.4"
+navSAfeArgs ="2.7.7"
+junitJupiter = "5.8.1"
+mockk = "1.12.0"
+archCoreKtx = "2.2.0"
+kotlinx = "1.7.1"
+androidxRunner = "1.5.2"
+gson = "2.10.1"
+retrofit = "2.9.0"
+okHttp3 = "4.12.0"
+lifecycleKtx = "2.7.0"
+navKtx = "2.7.7"
+glide = "4.13.2"
+roomKtx = "2.6.1"
+ksp = "1.9.23-1.0.19"
+#ksp = "1.9.20-1.0.14"
+dagger = "2.48.1"
+hilt = "2.48.1"
+coreTesting = "2.2.0"
+navigation = "2.5.3"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junitJupiter"}
+io-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk"}
+androidx-arch-core = { group = "androidx.arch.core", name = "core-testing", version.ref = "archCoreKtx"}
+kotlinx-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx" }
+kotlinx-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx" }
+kotlinx-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinx" }
+androidx-test = { group = "androidx.test", name = "runner", version.ref = "androidxRunner"}
+org-jetbrains-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin"}
+google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson"}
+squareup-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+squareup-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
+squareup-okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttp3"}
+androidx-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleKtx"}
+androidx-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleKtx"}
+androidx-compiler = { group = "androidx.lifecycle", name = "lifecycle-compiler", version.ref = "lifecycleKtx"}
+androidx-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navKtx"}
+androidx-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navKtx"}
+bumptech-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide"}
+bumptech-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide"}
+androidx-room-runtime = {group = "androidx.room", name = "room-runtime", version.ref = "roomKtx"}
+androidx-room-compiler = {group = "androidx.room", name = "room-compiler", version.ref = "roomKtx"}
+androidx-room-ktx = {group = "androidx.room", name = "room-ktx", version.ref = "roomKtx"}
+#google-dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger"}
+google-dagger-android-support = { group = "com.google.dagger", name = "dagger-android-support", version.ref = "dagger"}
+google-dagger-android-processor = { group = "com.google.dagger", name = "dagger-android-processor", version.ref = "dagger"}
+google-dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger"}
+google-dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}
+google-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt"}
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "agp"}
+daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
+kotlinkapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin"}
+kotlinksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
+navSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navSAfeArgs"}
+

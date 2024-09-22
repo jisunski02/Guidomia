@@ -150,10 +150,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             if(makeFilter == "All") {
+                carsAdapter.defaultExpandedPositionZero()
                 carsAdapter.differ.submitList(cars)
                 carsAdapter.notifyItemChanged(0)
                 binding.tvFilterMake.text = "Any make"
             } else{
+                carsAdapter.resetExpandedPosition()
                 carsAdapter.differ.submitList(filteredList)
                 binding.tvFilterMake.text = makeFilter
             }
@@ -161,16 +163,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun filterCarsByModel(modelFilter: String){
+
         viewModel.getCarsJson().observe(this){ cars->
             val filteredList = cars.filter {
                 it.model.contains(modelFilter, ignoreCase = true)
             }
 
             if(modelFilter == "All") {
+                carsAdapter.defaultExpandedPositionZero()
                 carsAdapter.differ.submitList(cars)
                 carsAdapter.notifyItemChanged(0)
-                binding.tvFilterModel.text = "Any make"
+                binding.tvFilterModel.text = "Any model"
             } else{
+                carsAdapter.resetExpandedPosition()
                 carsAdapter.differ.submitList(filteredList)
                 binding.tvFilterModel.text = modelFilter
             }

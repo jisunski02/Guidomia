@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dev.jaysonguillen.guidomia.R
 import dev.jaysonguillen.guidomia.data.model.Cars
+import dev.jaysonguillen.guidomia.data.utils.CarMake
 import dev.jaysonguillen.guidomia.databinding.CarItemsBinding
-import kotlin.coroutines.coroutineContext
 
 class CarsAdapter(
     private val context: Context,
@@ -60,8 +60,6 @@ class CarsAdapter(
         fun bind(cars: Cars) {
 
             consAdapter.differ.submitList(cars.consList)
-
-
             binding.rvCons.apply {
                 adapter = consAdapter
                 layoutManager = LinearLayoutManager(context)
@@ -69,7 +67,6 @@ class CarsAdapter(
             }
 
             prosAdapter.differ.submitList(cars.prosList)
-
             binding.rvPros.apply {
                 adapter = prosAdapter
                 layoutManager = LinearLayoutManager(context)
@@ -81,44 +78,48 @@ class CarsAdapter(
             binding.tvPrice.text =  "Price : ${convertToK(cars.marketPrice)}"
             binding.tvModelMake.text = "${cars.make} ${cars.model}"
 
-            when (cars.make) {
-                "Land Rover" -> {
-                    binding.ivCar.setImageResource(R.drawable.range_rover)
+            val carMake = CarMake.fromString(cars.make)
+            when (carMake) {
+                CarMake.LAND_ROVER -> {
+                    binding.ivCar.setImageResource(CarMake.LAND_ROVER.imageResource)
                 }
-                "Alpine" -> {
-                    binding.ivCar.setImageResource(R.drawable.alpine_roadster)
+                CarMake.ALPINE -> {
+                    binding.ivCar.setImageResource(CarMake.ALPINE.imageResource)
                 }
-                "BMW" -> {
-                    binding.ivCar.setImageResource(R.drawable.bmw_330i)
+                CarMake.BMW -> {
+                    binding.ivCar.setImageResource(CarMake.BMW.imageResource)
                 }
-                "Mercedes Benz" -> {
-                    binding.ivCar.setImageResource(R.drawable.mercedez_benz_glc)
+                CarMake.MERCEDES_BENZ -> {
+                    binding.ivCar.setImageResource(CarMake.MERCEDES_BENZ.imageResource)
                 }
-                else -> {
-
+                null -> {
+                    binding.ivCar.setImageResource(CarMake.MERCEDES_BENZ.imageResource)
                 }
             }
 
-// Show or hide the expandable layout based on whether this is the currently expanded item
             val isExpanded = adapterPosition == expandedPosition
             binding.llProsCons.visibility = if (isExpanded) View.VISIBLE else View.GONE
 
-            // Set up click listener to toggle the expanded/collapsed state
             itemView.setOnClickListener {
                 val oldExpandedPosition = expandedPosition
-
-                // Update the expanded position to the new item or collapse if clicked again
                 expandedPosition = if (isExpanded) RecyclerView.NO_POSITION else adapterPosition
 
                 // Notify changes:
-                // 1. Collapse the old item (if there was one expanded)
-                // 2. Expand the new item
                 notifyItemChanged(oldExpandedPosition)
                 notifyItemChanged(expandedPosition)
             }
         }
     }
 
+    fun defaultExpandedPositionZero(){
+        expandedPosition = 0
+        notifyItemChanged(0)
+    }
+
+    fun resetExpandedPosition() {
+        expandedPosition = RecyclerView.NO_POSITION
+        notifyItemChanged(RecyclerView.NO_POSITION)
+    }
 
 
     private fun convertToK(value: Double): String {

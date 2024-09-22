@@ -4,7 +4,6 @@
 ## Project Set up
 - Android Studio Koala Feature Drop | 2024.1.2
 - Programming Language: Kotlin
-- Third Party API tool: Postman v9.1.1
 - Gradle Plug in Version: 8.1.4 
 - Gradle Version: 8.5
 - JDK version: 17 

@@ -91,7 +91,7 @@ class CarsAdapter(
                 "BMW" -> {
                     binding.ivCar.setImageResource(R.drawable.bmw_330i)
                 }
-                "Mercedez Benz" -> {
+                "Mercedes Benz" -> {
                     binding.ivCar.setImageResource(R.drawable.mercedez_benz_glc)
                 }
                 else -> {
@@ -108,7 +108,7 @@ class CarsAdapter(
                 val oldExpandedPosition = expandedPosition
 
                 // Update the expanded position to the new item or collapse if clicked again
-                expandedPosition = if (isExpanded) RecyclerView.NO_POSITION else position
+                expandedPosition = if (isExpanded) RecyclerView.NO_POSITION else adapterPosition
 
                 // Notify changes:
                 // 1. Collapse the old item (if there was one expanded)

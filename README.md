@@ -16,12 +16,10 @@ MVVM (Model-View-ViewModel)+Clean Architecture
 ## Additional Tech Stack Used
 
     Live Data & ViewModel
-    Coroutines/Flow
+    Coroutines
     Room
-    Retrofit & OkHttp
+    Retrofit
     DaggerHilt
-    JUnit4(Unit Testing)
-    Github(Version Control)
 
 
 ## APK file 

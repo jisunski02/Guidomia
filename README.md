@@ -22,7 +22,7 @@ MVVM (Model-View-ViewModel)+Clean Architecture
     DaggerHilt
 
 
-## APK file 
+## APK file for demo
 
  - [Google Drive Link for APK](https://drive.google.com/file/d/1zaC40frgzkWlh5cMw-P9Z9A7L9_cmrb_/view?usp=sharing)
 

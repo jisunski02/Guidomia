@@ -3,18 +3,18 @@ package dev.jaysonguillen.guidomia.presentation.di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import dev.jaysonguillen.guidomia.domain.usecase.GetCarsJsonUseCase
 import dev.jaysonguillen.guidomia.domain.usecase.GetCarsUseCase
 import dev.jaysonguillen.guidomia.domain.usecase.SaveCarsUseCase
 import dev.jaysonguillen.guidomia.presentation.viewmodel.CarsViewModelFactory
-import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ActivityRetainedComponent::class)
 class FactoryModule {
 
-    @Singleton
+    @ActivityRetainedScoped
     @Provides
     fun providesCarsViewModelFactory(
         saveCarsUseCase: SaveCarsUseCase,

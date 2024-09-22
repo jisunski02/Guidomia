@@ -3,13 +3,16 @@ package dev.jaysonguillen.guidomia.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.jaysonguillen.guidomia.data.model.Cars
 import dev.jaysonguillen.guidomia.domain.usecase.GetCarsJsonUseCase
 import dev.jaysonguillen.guidomia.domain.usecase.GetCarsUseCase
 import dev.jaysonguillen.guidomia.domain.usecase.SaveCarsUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CarsViewModel(
+@HiltViewModel
+class CarsViewModel @Inject constructor(
     private val saveCarsUseCase: SaveCarsUseCase,
     private val getCarsUseCase: GetCarsUseCase,
     private val getCarsJsonUseCase: GetCarsJsonUseCase

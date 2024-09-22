@@ -1,23 +1,28 @@
 package dev.jaysonguillen.guidomia.presentation.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import dev.jaysonguillen.guidomia.R
 import dev.jaysonguillen.guidomia.data.model.Cars
 import dev.jaysonguillen.guidomia.databinding.CarItemsBinding
+import kotlin.coroutines.coroutineContext
 
-class CarsAdapter: RecyclerView.Adapter<CarsAdapter.CarsViewHolder>() {
+class CarsAdapter(
+    private val context: Context,
+    private val consAdapter: ConsAdapter,
+    private val prosAdapter: ProsAdapter): RecyclerView.Adapter<CarsAdapter.CarsViewHolder>() {
 
     // Variable to track the position of the currently expanded item
     private var expandedPosition: Int = 0
-    private lateinit var consAdapter: ConsAdapter
-    private lateinit var prosAdapter: ProsAdapter
 
     private val callback = object : DiffUtil.ItemCallback<Cars>() {
         override fun areItemsTheSame(oldItem: Cars, newItem: Cars): Boolean {
@@ -54,7 +59,6 @@ class CarsAdapter: RecyclerView.Adapter<CarsAdapter.CarsViewHolder>() {
 
         fun bind(cars: Cars) {
 
-            consAdapter = ConsAdapter()
             consAdapter.differ.submitList(cars.consList)
 
 
@@ -64,7 +68,6 @@ class CarsAdapter: RecyclerView.Adapter<CarsAdapter.CarsViewHolder>() {
 
             }
 
-            prosAdapter = ProsAdapter()
             prosAdapter.differ.submitList(cars.prosList)
 
             binding.rvPros.apply {
@@ -72,6 +75,8 @@ class CarsAdapter: RecyclerView.Adapter<CarsAdapter.CarsViewHolder>() {
                 layoutManager = LinearLayoutManager(context)
 
             }
+
+            addStars(binding.llStarContainer, cars.rating)
 
             binding.tvPrice.text =  "Price : ${convertToK(cars.marketPrice)}"
             binding.tvModelMake.text = "${cars.make} ${cars.model}"
@@ -124,5 +129,20 @@ class CarsAdapter: RecyclerView.Adapter<CarsAdapter.CarsViewHolder>() {
         }
     }
 
+
+    private fun addStars(container: LinearLayoutCompat, rating: Int) {
+        container.removeAllViews() // Clear previous stars if any
+
+        for (i in 1..rating) {
+            val starImageView = ImageView(context)
+            starImageView.setImageResource(R.drawable.ic_star_rate) // Use your star image here
+            val params = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            starImageView.layoutParams = params
+            container.addView(starImageView)
+        }
+    }
 
 }

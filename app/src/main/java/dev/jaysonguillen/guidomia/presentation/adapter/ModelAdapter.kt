@@ -16,12 +16,12 @@ import dev.jaysonguillen.guidomia.databinding.ModelItemsBinding
 
 class ModelAdapter: RecyclerView.Adapter<ModelAdapter.ModelViewHolder>() {
 
-    private val callback = object : DiffUtil.ItemCallback<Cars>() {
-        override fun areItemsTheSame(oldItem: Cars, newItem: Cars): Boolean {
-            return oldItem.model == newItem.model
+    private val callback = object : DiffUtil.ItemCallback<String>() {
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+            return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Cars, newItem: Cars): Boolean {
+        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
 
@@ -40,21 +40,30 @@ class ModelAdapter: RecyclerView.Adapter<ModelAdapter.ModelViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
-        val make = differ.currentList[position]
-        holder.bind(make)
+        val model = differ.currentList[position]
+        holder.bind(model)
     }
 
 
     inner class ModelViewHolder(
-        val binding: ModelItemsBinding
+        private val binding: ModelItemsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(cars: Cars) {
-            binding.tvModel.text = cars.model
+        fun bind(model: String) {
+            binding.tvModel.text = model
+
+            itemView.setOnClickListener {
+                onItemClickListener?.let {
+                    it(model)
+                }
+            }
         }
     }
 
+    private var onItemClickListener: ((String)->Unit)?=null
 
-
+    fun setOnItemClickLister(listener: ((String)->Unit)){
+        onItemClickListener = listener
+    }
 
 }

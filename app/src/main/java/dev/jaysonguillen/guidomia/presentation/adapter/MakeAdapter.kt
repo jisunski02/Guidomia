@@ -1,33 +1,26 @@
 package dev.jaysonguillen.guidomia.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import dev.jaysonguillen.guidomia.R
-import dev.jaysonguillen.guidomia.data.model.Cars
-import dev.jaysonguillen.guidomia.databinding.CarItemsBinding
 import dev.jaysonguillen.guidomia.databinding.MakeItemsBinding
 
 class MakeAdapter: RecyclerView.Adapter<MakeAdapter.MakeViewHolder>() {
 
-    private val callback = object : DiffUtil.ItemCallback<Cars>() {
-        override fun areItemsTheSame(oldItem: Cars, newItem: Cars): Boolean {
-            return oldItem.model == newItem.model
+    private val callback = object : DiffUtil.ItemCallback<String>() {
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+            return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Cars, newItem: Cars): Boolean {
+        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
 
     }
 
     val differ = AsyncListDiffer(this, callback)
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MakeViewHolder {
         val binding = MakeItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -45,15 +38,24 @@ class MakeAdapter: RecyclerView.Adapter<MakeAdapter.MakeViewHolder>() {
 
 
     inner class MakeViewHolder(
-        val binding: MakeItemsBinding
+        private val binding: MakeItemsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(cars: Cars) {
-            binding.tvMake.text = cars.make
+        fun bind(make: String) {
+            binding.tvMake.text = make
+
+            itemView.setOnClickListener {
+                onItemClickListener?.let {
+                    it(make)
+                }
+            }
         }
     }
 
+    private var onItemClickListener: ((String)->Unit)?=null
 
-
+    fun setOnItemClickLister(listener: ((String)->Unit)){
+        onItemClickListener = listener
+    }
 
 }
